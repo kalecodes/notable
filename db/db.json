@@ -1,12 +1,12 @@
 [
     {
-        "title": "Test Title",
-        "text": "Test text",
+        "title": "Click Me",
+        "text": "Click on any existing note title to view it's content",
         "id": "0"
     },
     {
-        "title": "Test Title 2",
-        "text":"Test text 2",
+        "title": "Delete Me",
+        "text":"Click the trashcan icon in any note to delete it!",
         "id": "1"
     }
 ]
