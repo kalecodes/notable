@@ -33,10 +33,21 @@ app.post('/api/notes', (req, res) => {
     res.json(note);
 });
 
+
+function createNewNote(body, notesArray) {
+    const note = body;
+    notesArray.push(note);
+    fs.writeFileSync(
+        path.join(__dirname, './db/db.json'),
+        JSON.stringify({ notes: notesArray }, null, 2)
+    );
+    return note;
+}
+
+
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
-
 
 app.listen(PORT, () => {
     console.log(`API server note listening on port ${PORT}!`);
