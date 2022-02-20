@@ -31,10 +31,10 @@ app.get('/api/notes', (req, res) => {
 
 function createNewNote(body) {
     let newNote = body;
-    newNote.id = notes.length.toString();
     let currentNotes = JSON.parse(
         fs.readFileSync('./db/db.json', 'utf8')
     );
+    newNote.id = currentNotes.length.toString();
     currentNotes.push(newNote);
     fs.writeFileSync('.db/db.json', JSON.stringify(currentNotes));
     return currentNotes;
