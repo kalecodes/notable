@@ -26,7 +26,7 @@ app.get('/notes', (req, res) => {
 //api routes
 app.get('/api/notes', (req, res) => {
     let notes = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
-    res.json(notes);
+    return res.json(notes);
 });
 
 function createNewNote(body) {
@@ -43,7 +43,7 @@ function createNewNote(body) {
 app.post('/api/notes', (req, res) => {
     // req.body.id = notes.length.toString();
     let note = createNewNote(req.body);
-    res.json(note);
+    return res.json(note);
 });
 
 // catch all route
