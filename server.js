@@ -24,6 +24,7 @@ app.get('/notes', (req, res) => {
 
 
 //api routes
+// reads the db.json file and returns all save notes as JSON
 app.get('/api/notes', (req, res) => {
     let notes = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
     return res.json(notes);
@@ -42,6 +43,7 @@ function createNewNote(body) {
 }
 
 // post route to handle new note creation
+// receives a new note to save on the request body using  createNewNote function
 app.post('/api/notes', (req, res) => {
     // req.body.id = notes.length.toString();
     let updatedNotes = createNewNote(req.body);
@@ -50,6 +52,7 @@ app.post('/api/notes', (req, res) => {
 
 
 // function to delete a note by its ID
+// reads all notes from db.json file, rewrites all notes that do not have specified id and rewrites db.json file with new array
 function deleteNote(id) {
     let currentNotes = JSON.parse(
         fs.readFileSync('./db/db.json', 'utf8')
@@ -60,6 +63,7 @@ function deleteNote(id) {
 }
 
 // delete route to handle deleting a specific note
+// receives  a query parameter containing i d of note to delete
 app.delete('/api/notes/:id', (req, res) => {
     let deleted = deleteNote(req.params.id);
     return res.json(deleted)
