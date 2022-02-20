@@ -6,7 +6,7 @@
     },
     {
         "title": "Delete Me",
-        "text":"Click the trashcan icon in any note to delete it!",
+        "text":"Click the trashcan icon in any note to delete it! (Notes cannot be deleted while being viewed in the text area)",
         "id": "1"
     }
 ]
