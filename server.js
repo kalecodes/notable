@@ -1,7 +1,6 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const { notes } = require('./db/db.json');
 
 // set up express server
 const PORT = process.env.PORT || 3001;
