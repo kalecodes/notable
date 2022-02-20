@@ -25,24 +25,26 @@ app.get('/notes', (req, res) => {
 
 //api routes
 app.get('/api/notes', (req, res) => {
+    let notes = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
     res.json(notes);
 });
 
 app.post('/api/notes', (req, res) => {
-    req.body.id = notes.length.toString();
-    const note = createNewNote(req.body, notes);
+    // req.body.id = notes.length.toString();
+    let note = createNewNote(req.body);
     res.json(note);
 });
 
 
-function createNewNote(body, notesArray) {
-    const note = body;
-    notesArray.push(note);
-    fs.writeFileSync(
-        path.join(__dirname, './db/db.json'),
-        JSON.stringify({ notes: notesArray }, null, 2)
+function createNewNote(body) {
+    let newNote = body;
+    newNote.id = notes.length.toString();
+    let currentNotes = JSON.parse(
+        fs.readFileSync('./db/db.json', 'utf8')
     );
-    return note;
+    currentNotes.push(newNote);
+    fs.writeFileSync('.db/db.json', JSON.stringify(currentNotes));
+    return currentNotes;
 }
 
 // catch all route
