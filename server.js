@@ -41,11 +41,29 @@ function createNewNote(body) {
     return currentNotes;
 }
 
+// post route to handle new note creation
 app.post('/api/notes', (req, res) => {
     // req.body.id = notes.length.toString();
     let updatedNotes = createNewNote(req.body);
     return res.json(updatedNotes);
 });
+
+
+// function to delete a note by its ID
+function deleteNote(id) {
+    let currentNotes = JSON.parse(
+        fs.readFileSync('./db/db.json', 'utf8')
+    );
+    let newArray = currentNotes.filter(file => file.id !== id);
+    fs.writeFileSync('./db/db.json', JSON.stringify(newArray));
+    return newArray;
+}
+
+// delete route to handle deleting a specific note
+app.delete('/api/notes/:id', (req, res) => {
+    let deleted = deleteNote(req.params.id);
+    return res.json(deleted)
+})
 
 // catch all route
 app.get('*', (req, res) => {
