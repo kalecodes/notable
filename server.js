@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { notes } = require('./db/db.json');
 
+// set up express server
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -44,11 +45,13 @@ function createNewNote(body, notesArray) {
     return note;
 }
 
-
+// catch all route
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
+
+// listener
 app.listen(PORT, () => {
     console.log(`API server note listening on port ${PORT}!`);
 });
