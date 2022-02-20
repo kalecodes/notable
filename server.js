@@ -24,7 +24,7 @@ app.get('/notes', (req, res) => {
 
 
 //api routes
-app.get('/api/notes', (res, res) => {
+app.get('/api/notes', (req, res) => {
     res.json(notes);
 });
 
