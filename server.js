@@ -29,13 +29,6 @@ app.get('/api/notes', (req, res) => {
     res.json(notes);
 });
 
-app.post('/api/notes', (req, res) => {
-    // req.body.id = notes.length.toString();
-    let note = createNewNote(req.body);
-    res.json(note);
-});
-
-
 function createNewNote(body) {
     let newNote = body;
     newNote.id = notes.length.toString();
@@ -46,6 +39,12 @@ function createNewNote(body) {
     fs.writeFileSync('.db/db.json', JSON.stringify(currentNotes));
     return currentNotes;
 }
+
+app.post('/api/notes', (req, res) => {
+    // req.body.id = notes.length.toString();
+    let note = createNewNote(req.body);
+    res.json(note);
+});
 
 // catch all route
 app.get('*', (req, res) => {
