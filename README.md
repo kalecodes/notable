@@ -6,6 +6,7 @@
 An Express.js note taking application
 
 ![](./public/assets/images/notable-ss-1.png)
+![](./public/assets/images/notable-ss-2.png)
 
 ## Table of Contents
 * [Installation](#installation)
