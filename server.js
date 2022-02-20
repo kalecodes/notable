@@ -29,6 +29,7 @@ app.get('/api/notes', (req, res) => {
     return res.json(notes);
 });
 
+// function to  create a new note upon post request
 function createNewNote(body) {
     let newNote = body;
     let currentNotes = JSON.parse(
@@ -36,14 +37,14 @@ function createNewNote(body) {
     );
     newNote.id = currentNotes.length.toString();
     currentNotes.push(newNote);
-    fs.writeFileSync('.db/db.json', JSON.stringify(currentNotes));
+    fs.writeFileSync('./db/db.json', JSON.stringify(currentNotes));
     return currentNotes;
 }
 
 app.post('/api/notes', (req, res) => {
     // req.body.id = notes.length.toString();
-    let note = createNewNote(req.body);
-    return res.json(note);
+    let updatedNotes = createNewNote(req.body);
+    return res.json(updatedNotes);
 });
 
 // catch all route
